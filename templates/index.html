@@ -6,7 +6,7 @@
 {% if background %}
 <style>body {background-image: url('{{ background_img }}');}</style>
 {% else %}
-#!/usr/bin/env node<style>body {background-color: {{ background_color }};}</style>
+<style>body {background-color: {{ background_color }};}</style>
 {% endif %}
 
 {% endblock %}
@@ -21,13 +21,20 @@
 <!-- Content -->
 {% block content %}
 
-<div class="container" style="position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);">
+<div class="" style="position:fixed;top:0px;right:0px;margin-right:10px;">
+    <strong><p class="h1 text-white"><strong id="time">Date Initialization</strong></p></strong>
+</div>
+
+<div class="container" style="position:fixed;top:45%;left:50%;transform: translate(-50%, -50%);">
+        {% if logo %}
+        <img src="{{logo_img}}" alt="logo" class="rotate-center" style="max-height:16em;margin:auto;margin-bottom:25px;text-align:center;display:flex">
+        {% else %}
+        <h1 class="display-1 text-white rotate-center" style="margin-bottom:25px;text-align:center;">{{logo_text}}</h1>
+        {% endif %}
         <form action="{{ url_for('redirect_search') }}" method="POST" class="input-group input-group-lg mb-3 scale-up-center">
             <span class="input-group-text bg-primary text-white"><i class="bi bi-google"></i></span>
             <input type="text" class="form-control" placeholder="Simple Google Search" id="input-search" name="input-search" onkeyup="check()" onkeydown="check()" ondragleave="check()" onkeypress="check()">
             <button class="btn btn-primary" type="submit" id="search_button" name="search_button" disabled><i class="bi bi-search"></i>&nbsp;Search</button>
-        </form>
-        <form>
         </form>
 </div>
 {% endblock %}
@@ -37,6 +44,15 @@
 <!-- Scripts -->
 {% block scripts %}
 <script>
+    
+
+    setInterval(function time_function(){
+        var date = new Date();
+        document.getElementById("time").innerHTML = date.getHours()+':'+date.getMinutes();
+    },2000);
+
+    time_function();
+    
     function check(){
         if(document.getElementById("input-search").value.length < 1) {
             document.getElementById('search_button').disabled = true; 
