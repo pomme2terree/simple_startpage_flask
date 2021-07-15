@@ -22,7 +22,9 @@
 {% block content %}
 
 <div class="" style="position:fixed;top:0px;right:0px;margin-right:10px;">
+    {% if time %}
     <strong><p class="h1 text-white"><strong id="time">Date Initialization</strong></p></strong>
+    {% endif %}
 </div>
 
 <div class="container" style="position:fixed;top:45%;left:50%;transform: translate(-50%, -50%);">
@@ -32,10 +34,68 @@
         <h1 class="display-1 text-white rotate-center" style="margin-bottom:25px;text-align:center;">{{logo_text}}</h1>
         {% endif %}
         <form action="{{ url_for('redirect_search') }}" method="POST" class="input-group input-group-lg mb-3 scale-up-center">
+            {% if search_engine == 1 %}
             <span class="input-group-text bg-primary text-white"><i class="bi bi-google"></i></span>
+            {% else %}
+            <span class="input-group-text bg-primary text-white"><i class="bi bi-card-heading"></i></span>
+            {% endif %}
             <input type="text" class="form-control" placeholder="Simple Google Search" id="input-search" name="input-search" onkeyup="check()" onkeydown="check()" ondragleave="check()" onkeypress="check()">
             <button class="btn btn-primary" type="submit" id="search_button" name="search_button" disabled><i class="bi bi-search"></i>&nbsp;Search</button>
         </form>
+
+
+        {% if links%}
+        <div class="row" style="margin-top:50px;">
+            <div class="col-sm-3">
+                <a href="{{ link_01 }}" target="_blank"><div class="card mb-3 shadow card-shadow-hover" style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{{ link_01_img }}" class="img-fluid rounded-start" style="max-height:6em;margin:5px;" alt="{{ link_01 }}">
+                      </div>
+                      <div class="col-md-8" style="text-align:center;">
+                        <h1 style="top:25%;position:absolute;left:25%;right:0;"><strong>{{link_01_name}}</strong></h1>
+                      </div>
+                    </div>
+                  </div></a>
+            </div>
+            <div class="col-sm-3">
+                <a href="{{ link_02 }}" target="_blank"><div class="card mb-3 shadow card-shadow-hover" style="max-width:540px;min-height:6em;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{{ link_02_img }}" class="img-fluid rounded-start" style="max-height:6em;margin:5px" alt="{{ link_02 }}">
+                      </div>
+                      <div class="col-md-8" style="text-align:center;">
+                        <h1 style="top:25%;position:absolute;left:25%;right:0;"><strong>{{link_02_name}}</strong></h1>
+                      </div>
+                    </div>
+                  </div></a>
+            </div>
+            <div class="col-sm-3">
+                <a href="{{ link_03 }}" target="_blank"><div class="card mb-3 shadow card-shadow-hover" style="max-width:540px;min-height:6em;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{{ link_03_img }}" class="img-fluid rounded-start" style="max-height:6em;margin:5px;" alt="{{ link_03 }}">
+                      </div>
+                      <div class="col-md-8" style="text-align:center;">
+                        <h1 style="top:25%;position:absolute;left:25%;right:0;"><strong>{{link_03_name}}</strong></h1>
+                      </div>
+                    </div>
+                  </div></a>
+            </div>
+            <div class="col-sm-3">
+                <a href="{{ link_04 }}" target="_blank"><div class="card mb-3 shadow card-shadow-hover" style="max-width:540px;min-height:6em;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="{{ link_04_img }}" class="img-fluid rounded-start" style="max-height:6em;margin:5px;" alt="{{ link_04 }}">
+                      </div>
+                      <div class="col-md-8" style="text-align:center;">
+                        <h1 style="top:25%;position:absolute;left:25%;right:0;"><strong>{{link_04_name}}</strong></h1>
+                      </div>
+                    </div>
+                  </div></a>
+            </div>
+        </div>
+        {% endif %}
 </div>
 {% endblock %}
 <!-- END / Content -->
@@ -45,11 +105,10 @@
 {% block scripts %}
 <script>
     
-
     setInterval(function time_function(){
         var date = new Date();
         document.getElementById("time").innerHTML = date.getHours()+':'+date.getMinutes();
-    },2000);
+    },1000);
 
     time_function();
     
