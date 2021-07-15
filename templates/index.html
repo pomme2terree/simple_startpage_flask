@@ -2,11 +2,13 @@
 
 <!-- Styles -->
 {% block styles %}
-<style>
-    body {
-        background-image: url('{{ background }}');
-    }
-</style>
+
+{% if background %}
+<style>body {background-image: url('{{ background_img }}');}</style>
+{% else %}
+#!/usr/bin/env node<style>body {background-color: {{ background_color }};}</style>
+{% endif %}
+
 {% endblock %}
 <!-- END / Styles -->
 

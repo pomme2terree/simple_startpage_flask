@@ -1,17 +1,21 @@
 import os, time
-import database
 from flask import *
 
 app = Flask(__name__)
-app.secret_key = database.generate_string(16)
+app.secret_key = os.urandom(16)
 
 # Value Config
 username = 'Takeus'
-background = 'alphacoders_background_by_mimosa.jpg' # static/background/ (if you want no backgroud, leave empty)
+Logo = True
+
+# Backgrounds
+background = False
+background_color = '#95a5a6' # Hex (IF Background=False)
+background_img = 'alphacoders_background_by_mimosa.jpg' # in static/background/ (IF Background=True)
 
 @app.route('/')
 def index():
-    return render_template('index.html', title=username, links=database.return_links(), background=url_for('static',filename='background/'+str(background)))
+    return render_template('index.html',title=username,background=background,background_color=background_color,background_img=url_for('static',filename='background/'+str(background_img)))
 
 @app.route('/<string:link>',methods=['post', 'get'])
 def redirect_link(link):
