@@ -7,7 +7,7 @@ app.secret_key = os.urandom(16)
 
 # Info Config
 title = 'StartPage'
-search_engine = 5 #1:google #2:DuckDuckGo #3:Yandex
+search_engine = 1 #1:google #2:DuckDuckGo #3:Yandex
 logo_text = 'My StartPage' # (IF logo=False)
 logo_img = 'logo_flaticon_freepik.png' # in static/background/ (IF logo=True)
 
