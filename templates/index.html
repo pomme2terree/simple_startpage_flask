@@ -2,13 +2,11 @@
 
 <!-- Styles -->
 {% block styles %}
-
 {% if background %}
 <style>body {background-image: url('{{ background_img }}');}</style>
 {% else %}
 <style>body {background-color: {{ background_color }};}</style>
 {% endif %}
-
 {% endblock %}
 <!-- END / Styles -->
 
